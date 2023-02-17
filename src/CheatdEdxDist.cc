@@ -230,7 +230,6 @@ void CheatdEdxDist::processEvent(LCEvent *evt)
 				const ParticleID &pid_nominal = pidh.getParticleID(pfo_rp, algoID_nominal);
 				int index_dedxdist_nominal = pidh.getParameterIndex(algoID_nominal, "kaon_dEdxdistance");
 				std::vector<float> params_nominal = pid_nominal.getParameters();
-				for(int ip=0; ip<params_nominal.size();ip++) std::cout<<ip<<" "<<index_dedxdist_nominal<<std::endl;
 				if(params_nominal.size()>0) 	dedx_nominal = params_nominal.at(index_dedxdist_nominal);
 			}
 			catch (DataNotAvailableException &e)
