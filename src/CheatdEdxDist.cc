@@ -86,6 +86,10 @@ CheatdEdxDist::CheatdEdxDist() : Processor("CheatdEdxDist")
 
 	// input collections			std::string _methodstorun_version="_v3";
 
+	registerProcessorParameter("improvement",
+							   "improvement of the dEdx calculation, 0.1 means 10% improvement",
+							   improvement,
+							   improvement);
 	registerProcessorParameter("_methodstorun_version",
 							   "tag for the new PID algorithm dEdxPID_tag",
 							   _methodstorun_version,
@@ -258,13 +262,13 @@ void CheatdEdxDist::processEvent(LCEvent *evt)
 				{
 					if (fabs(pdg_mc) == id[ir])
 					{
-						dedxdist = r1->Gaus(mean.at(ir).at(icostheta), rms.at(ir).at(icostheta));
+						dedxdist = r1->Gaus(mean.at(ir).at(icostheta), rms.at(ir).at(icostheta)*(1.0-improvement));
 						hadronfound = true;
 						continue;
 					}
 				}
 				if (hadronfound == false)
-					dedxdist = r1->Gaus(mean.at(5).at(icostheta), rms.at(5).at(icostheta));
+					dedxdist = r1->Gaus(mean.at(5).at(icostheta), rms.at(5).at(icostheta)*(1.0-improvement));
 
 				std::vector<float> valores;
 				valores.push_back(dedxdist);

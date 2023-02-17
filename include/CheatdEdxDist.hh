@@ -83,6 +83,8 @@ private:
   std::vector<std::vector<float>> mean;
   std::vector<std::vector<float>> rms;
 
+  float improvement=0.;// from 0.1 improvement means a 10% improvement
+
 };
 
 #endif
